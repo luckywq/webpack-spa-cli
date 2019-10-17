@@ -1,3 +1,8 @@
-import './styles/index.scss'
 
-alert('webpack-cli');
+import './index.html';
+import './styles/index.scss';
+
+import http from './http';
+
+new http();
+

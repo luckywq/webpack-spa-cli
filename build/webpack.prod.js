@@ -1,11 +1,11 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    mode: 'production',
+	mode: 'production',
 	optimization: {
 		minimizer: [
 			new UglifyJSPlugin({
@@ -16,16 +16,16 @@ module.exports = merge(common, {
 					warnings: false,
 					parallel: true,
 					cache: true,
-					sourceMap: true
-				}
+					sourceMap: true,
+				},
 			}),
-			new OptimizeCSSAssetsPlugin({})
-		]
+			new OptimizeCSSAssetsPlugin(),
+		],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: "[name].[hash].css",
-			chunkFilename: "[id].[hash].css"
-		})
-	]
-})
+			filename: '[name].[hash].css',
+			chunkFilename: '[id].[hash].css',
+		}),
+	],
+});
