@@ -2,7 +2,6 @@
 import './index.html';
 import './styles/index.scss';
 
-import http from './http';
+import Test from './models/http';
 
-new http();
-
+new Test();

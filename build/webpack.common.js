@@ -24,7 +24,27 @@ module.exports = {
 	],
 	module: {
 		rules: [
-			
+			{
+				enforce: 'pre', // preloader
+				test: /\.js$/i,
+				exclude: /node_modules/,
+				use: {
+					loader: 'eslint-loader',
+				}
+			},
+			{
+				test: /\.js$/i,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						plugins: [
+							'@babel/transform-runtime' // async support
+						]
+					}
+				}
+			},
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
@@ -44,7 +64,15 @@ module.exports = {
 						}
 					}
 				]
-			}
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				loader: 'url-loader',
+				options: {
+					limit: 10000,
+					
+				}
+			},
 		]
 	},
 	resolve: {
